@@ -1,38 +1,53 @@
-import type { ReactNode } from "react";
 import type { ImageStyle, StyleProp } from "react-native";
 
 export interface CalendarDayProps {
     testId?: string,
-    isShowGrid?: boolean,
-    hideOtherDates?: boolean,
     style?: StyleProp<ImageStyle>
 
-    dateView?: any,
-    onDayPress?: ({ day, month, year }: { day: number, month: number, year: number }) => void;
+    /** Display grid like view around each day, DEFAULT = true */
+    isShowGrid?: boolean,
 
-    /** Replace default month and year title with custom one. the function receive a date as parameter */
-    renderHeader?: ({ month, monthName, year, toggleMList, toggleYList }: CustomHeaderProps) => JSX.Element;
+    /** Hide prev month & next month extra days, DEFAULT = false */
+    hideExtraDays?: boolean,
 
-    /** Render custom date component. the function receive a all day props */
+    /** Callback which get invloked when a date is clicked, The function receives day, month & year as parameter  */
+    onDayPress?: (props: { day: number, month: number, year: number }) => void;
+
+    /** Replace default month and year title with custom one. The function receive a month & year as parameter */
+    renderHeader?: (props: CustomHeaderProps) => JSX.Element;
+
+    /** Render custom date component. the function receive all day props */
     renderDay?: (props: DayItemProps) => JSX.Element;
 
     /** Render custom week component. the function receive a all day props */
     renderWeekName?: (props: WeekItemProps) => JSX.Element;
 
-    /** Hide month navigation arrows */
+    /** Hide month & year navigation arrows */
     hideArrows?: boolean;
+
     /** Replace left arrows with custom ones */
-    renderLeftArrow?: () => ReactNode;
+    renderLeftArrow?: () => JSX.Element;
+
     /** Replace left arrows with custom ones */
-    renderRightArrow?: () => ReactNode;
+    renderRightArrow?: () => JSX.Element;
+
     /** Handler which gets executed when press arrow icon left. It receive a callback can go back month */
-    onPressArrowLeft?: (method: () => void, month?: number) => void;
+    onPressArrowLeft?: (props: ArrowProps) => void;
+
     /** Handler which gets executed when press arrow icon right. It receive a callback can go next month */
-    onPressArrowRight?: (method: () => void, month?: number) => void;
+    onPressArrowRight?: (props: ArrowProps) => void;
+
     /** Disable left arrow */
     disableArrowLeft?: boolean;
+
     /** Disable right arrow */
     disableArrowRight?: boolean;
+
+    /** Minimum date that can be selected, dates before minDate will be grayed out. Format = "DD-MM-YYYY" */
+    minDate?: string,
+
+    /** Maximum date that can be selected, dates after maxDate will be grayed out. Format = "DD-MM-YYYY" */
+    maxDate?: string,
 }
 
 export interface MonthDateInfoProps {
@@ -48,14 +63,20 @@ export interface TextProps {
 }
 
 export interface DayProps {
-    value: number, isValid: boolean, isToday?: boolean, isHide?: boolean
+    value: number, isValid: boolean, isToday?: boolean, isHide?: boolean, isExtraDay?: boolean
+}
+
+export interface ArrowProps {
+    prevMonth?: Function, month?: number, nextMonth?: Function
 }
 
 export interface MonthListProps {
     testId?: string,
     onClick?: Function,
     currIndex?: number,
-    yearList?: Array<MonthListItemProps>
+    yearList?: Array<MonthListItemProps>,
+    toggleMonthList?: Function,
+    toggleYearList?: Function
 }
 
 export interface DayItemProps {
@@ -81,4 +102,9 @@ export interface CustomHeaderProps {
     month: number, monthName: string, year: number,
     toggleMList: Function, toggleYList: Function,
     prevMonth: Function, nextMonth: Function
+}
+
+export interface GetDateListProps {
+    month: number, year: number, startOfMonth: number, hideExtraDays: boolean,
+    minDate?: string, maxDate?: string
 }

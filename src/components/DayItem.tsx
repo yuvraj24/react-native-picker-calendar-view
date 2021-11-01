@@ -7,20 +7,23 @@ import TextView from './TextView';
 
 const DayItem = ({ day, index, testId, month, year, onDayPress }: DayItemProps) => {
 
+    const isDisable = !day.isValid || day.isExtraDay
+    const isTodayStyle = day.isToday && [styles.textToday, day.value < 10 ? styles.textTodaySingle : styles.textTodayDouble]
+
     return (
         <TouchableOpacity
             {...getTestProps(testId + '-date-view-' + index)}
             activeOpacity={!day.isValid ? 1 : 0.5}
             onPress={() => {
-                onDayPress && onDayPress({ day: day.value, month, year });
+                day.isValid && !day.isExtraDay && onDayPress && onDayPress({ day: day.value, month, year });
             }}>
-            <View>
+            <View style={day.isToday && styles.circleView}>
                 {!day.isHide && <TextView
                     {...getTestProps(`${testId}-date-${index}`)}
                     style={[
                         styles.textDayNumber,
-                        !day.isValid && styles.viewDateDisabled,
-                        day.isToday && (day.value < 10 ? styles.textTodaySingle : styles.textTodayDouble),
+                        isTodayStyle,
+                        isDisable && { ...styles.viewDateDisabled, ...styles.textDisableColor },
                     ]}
                 >{day.value}</TextView>}
             </View>
@@ -35,23 +38,33 @@ const styles = StyleSheet.create({
         fontSize: Res.unit.scale(14),
         fontFamily: Res.font.Regular,
     },
-    textTodaySingle: {
-        color: Res.color.white, 
+    textToday: {
         backgroundColor: Res.color.primary,
+        fontFamily: "NotoSans-SemiBold"
+    },
+    textTodaySingle: {
+        color: Res.color.white,
         paddingHorizontal: 11,
         paddingVertical: 3,
-        borderRadius: 50
     },
     textTodayDouble: {
-        color: Res.color.white,
-        backgroundColor: Res.color.primary,
+        color: Res.color.gridColor,
         paddingHorizontal: 6,
         paddingVertical: 3,
-        borderRadius: 50
     },
     viewDateDisabled: {
         borderColor: Res.color.gridColor,
         borderWidth: Res.unit.scale(1),
         opacity: 0.3,
     },
+    textDisableColor: {
+        color: "#000",
+    },
+    circleView: {
+        borderBottomLeftRadius: 50,
+        borderBottomRightRadius: 50,
+        borderTopLeftRadius: 50,
+        borderTopRightRadius: 50,
+        overflow: "hidden",
+    }
 })

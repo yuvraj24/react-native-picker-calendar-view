@@ -22,9 +22,13 @@ const maxWidth = Dimensions.get('screen').width / 8;
 const CalendarDateView = ({
     testId,
     isShowGrid = true,
-    hideOtherDates = true,
+    hideExtraDays = false,
     hideArrows,
+    disableArrowLeft = false,
+    disableArrowRight = false,
     style,
+    minDate,
+    maxDate,
     renderHeader,
     renderDay,
     renderWeekName,
@@ -46,17 +50,21 @@ const CalendarDateView = ({
     const { dateList } = monthDateInfo
 
     useEffect(() => {
-        console.log("useEffect Called 1 => ", `${month}-${year}`)
         let momentDate = moment(`${month}-${year}`, 'M-YYYY');
         const startOfMonth = momentDate.startOf('month').weekday();
-        const list = DateUtil.getMonthDateList(month, year, startOfMonth, hideOtherDates);
-
-        console.log("useEffect Called 2 => ", month, year, startOfMonth, hideOtherDates)
+        const list = DateUtil.getMonthDateList({ month, year, startOfMonth, hideExtraDays, minDate, maxDate });
 
         setMonthDateInfo({
             dateList: list,
         });
-    }, [month, year]);
+    }, [month, year, isShowGrid,
+        hideExtraDays,
+        hideArrows,
+        disableArrowLeft,
+        disableArrowRight,
+        style,
+        minDate,
+        maxDate,]);
 
     const toggleMonthList = () => {
         setIsMonthView(!isMonthView)
@@ -84,13 +92,16 @@ const CalendarDateView = ({
         }
     }
 
+    const RenderLeftArrow = renderLeftArrow
+    const RenderRightArrow = renderRightArrow
     const calendarHeader = (
         <View style={[styles.parentHeader]} {...getTestProps(testId)}>
             <View style={[baseStyles.row, styles.flexStyle]}>
                 <TouchableOpacity
+                    activeOpacity={disableArrowLeft ? 1 : 0.5}
                     {...getTestProps(`${testId}-arrow-left`)}
-                    onPress={() => prevMonth()}>
-                    {!hideArrows && (renderLeftArrow || <Image source={LeftArrowIcon} style={styles.arrowStyle} />)}
+                    onPress={() => !disableArrowLeft && prevMonth && prevMonth()}>
+                    {!hideArrows && ((RenderLeftArrow && <RenderLeftArrow />) || <Image source={LeftArrowIcon} style={styles.arrowStyle} />)}
                 </TouchableOpacity>
 
                 <View style={styles.monthYearStyle}>
@@ -111,9 +122,10 @@ const CalendarDateView = ({
                 </View>
 
                 <TouchableOpacity
+                    activeOpacity={disableArrowRight ? 1 : 0.5}
                     {...getTestProps(`${testId}-arrow-right`)}
-                    onPress={() => nextMonth()}>
-                    {!hideArrows && (renderRightArrow || <Image source={RightArrowIcon} style={styles.arrowStyle} />)}
+                    onPress={() => !disableArrowRight && nextMonth && nextMonth()}>
+                    {!hideArrows && ((RenderRightArrow && <RenderRightArrow />) || <Image source={RightArrowIcon} style={styles.arrowStyle} />)}
                 </TouchableOpacity>
             </View>
         </View>
@@ -196,6 +208,7 @@ const CalendarDateView = ({
             {calendarDateView}
 
             {isMonthView && <MonthListView
+                toggleMonthList={toggleMonthList}
                 onClick={(selectedMonth: number) => {
                     setMonth(selectedMonth)
                     toggleMonthList()
@@ -204,8 +217,8 @@ const CalendarDateView = ({
 
             {isYearView && <YearListView
                 yearList={yearListRef.current}
+                toggleYearList={toggleYearList}
                 onClick={(selectedYear: number) => {
-                    console.log("Year Selected => ", selectedYear)
                     setYear(selectedYear)
                     toggleYearList()
                 }}

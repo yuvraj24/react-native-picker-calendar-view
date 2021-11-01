@@ -9,12 +9,9 @@ const HeaderView = () => {
             <CalendarDateView
                 onDayPress={({ day, month, year }) => {
                     console.log(day, month, year)
-                }}
-                testId={"calendar"}
-                renderLeftArrow={undefined}
-                renderRightArrow={undefined}
+                }} 
+                testId={"calendar"} 
                 renderHeader={(props) => {
-                    console.log("renderHeader => ", props)
                     const { month, monthName, year, prevMonth, nextMonth, toggleMList, toggleYList } = props
 
                     return (

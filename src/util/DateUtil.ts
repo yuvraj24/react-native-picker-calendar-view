@@ -1,5 +1,5 @@
 import moment from 'moment';
-import type { DayProps, MonthListItemProps } from 'src/interface/PropsInterface';
+import type { DayProps, GetDateListProps, MonthListItemProps } from 'src/interface/PropsInterface';
 
 const dayArr = [
   { d: '1', dd: '01', ddh: 'Su', ddd: 'Sun', dddd: 'Sunday' },
@@ -107,7 +107,6 @@ const getSelectedYearIndex = (selectedYear: number) => {
   selectedYearIndex = yearList().findIndex(
     (year) => selectedYear === year.value,
   );
-  console.log(`getSelectedYearIndex => Year : ${selectedYear} | Index : ${selectedYearIndex}`)
   return selectedYearIndex;
 };
 
@@ -142,7 +141,10 @@ const yearList = () => {
   return list;
 };
 
-const getMonthDateList = (month: number, year: number, startOfMonth: number, hideOtherDates: boolean) => {
+const getMonthDateList = (props: GetDateListProps) => {
+
+  let { month, year, startOfMonth, hideExtraDays, minDate, maxDate } = props
+
   let currDaysInMonth = moment(`${month}-${year}`, 'M-YYYY').daysInMonth();
   console.log(`Month : ${month} | Year : ${year} | Days in Month : ${currDaysInMonth}`)
 
@@ -150,7 +152,7 @@ const getMonthDateList = (month: number, year: number, startOfMonth: number, hid
   let prevYear = year
   if (month - 1 <= 0) {
     prevMonth = 12;
-    prevYear = year--;
+    prevYear = year - 1;
   }
   const prevDaysInMonth = moment(
     `${prevMonth}-${prevYear}`,
@@ -161,16 +163,22 @@ const getMonthDateList = (month: number, year: number, startOfMonth: number, hid
   let list: Array<DayProps> = [];
   while (i < currDaysInMonth + startOfMonth) {
 
-    const isValid = !(i < startOfMonth)
     const date = (i < startOfMonth
       ? prevDaysInMonth - startOfMonth + i
       : i - startOfMonth) + 1
 
+    // check if date falls between minDate & maxDate
+    let isValid = checkIsDateValid(date, month, year, minDate, maxDate)
+
+    // check if date falls in current month
+    const isExtraDay = i < startOfMonth
+
     list.push({
       value: date,
-      isValid: !(i < startOfMonth),
+      isExtraDay: isExtraDay,
+      isValid: isValid,
       isToday: isToday(date, month, year),
-      isHide: !isValid && hideOtherDates
+      isHide: isExtraDay && hideExtraDays
     });
     i++;
   }
@@ -179,15 +187,33 @@ const getMonthDateList = (month: number, year: number, startOfMonth: number, hid
 
   i = 0;
   while (i < size) {
+    i++
     list.push({
       value: i,
+      isExtraDay: true,
       isValid: false,
-      isHide: hideOtherDates
+      isToday: false,
+      isHide: hideExtraDays
     });
-    i++;
   }
   return list;
 };
+
+const checkIsDateValid = (date: number, month: number, year: number, minDate?: string, maxDate?: string) => {
+  let isValid = true
+  const mCurrDate = moment(`${date}-${month}-${year}`, 'DD-MM-YYYY')
+  if (minDate) {
+    // console.log("MIN Date => ", mCurrDate.date() , moment(minDate, "DD-MM-YYYY").date(), mCurrDate.isSameOrBefore(moment(minDate, "DD-MM-YYYY").toDate()))
+    isValid = mCurrDate.isSameOrAfter(moment(minDate, "DD-MM-YYYY").toDate())
+  }
+
+  if (maxDate) {
+    // console.log("MAX Date => ", mCurrDate, moment(maxDate, "DD-MM-YYYY"), mCurrDate.isSameOrBefore(moment(maxDate, "DD-MM-YYYY").toDate()))
+    isValid = isValid && mCurrDate.isSameOrBefore(moment(maxDate, "DD-MM-YYYY").toDate())
+  }
+
+  return isValid;
+}
 
 const getValidDateFormat = (currentDayNumber: number, month: number, year: number) => {
   return `${currentDayNumber < 10 ? '0' + currentDayNumber : currentDayNumber
@@ -195,11 +221,10 @@ const getValidDateFormat = (currentDayNumber: number, month: number, year: numbe
 };
 
 const isToday = (date: number, month: number, year: number) => {
-  console.log(`isTodaysDate => Date : ${date} ${month} ${year}`)
   const mDate = moment(`${date}-${month}-${year}`, 'DD-MM-YYYY').toDate()
   const currDate = moment().toDate()
   const isTodaysDate = currDate.toDateString() === mDate.toDateString()
-  console.log(`isTodaysDate => Date : ${date} | Now : ${currDate.toDateString()} | selected : ${mDate.toDateString()} | isToday : ${isTodaysDate}`)
+  // console.log(`isTodaysDate => Date : ${date} | Now : ${currDate.toDateString()} | selected : ${mDate.toDateString()} | isToday : ${isTodaysDate}`)
   return isTodaysDate
 }
 

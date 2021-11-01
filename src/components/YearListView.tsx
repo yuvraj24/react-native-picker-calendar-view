@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
-import type { MonthListProps, MonthListItemProps } from '../interface/PropsInterface';
+import type { MonthListItemProps, MonthListProps } from '../interface/PropsInterface';
 import { baseStyles } from '../style/baseStyles';
 import Res from '../style/Res';
 import { getTestProps } from '../util/AppUtil';
@@ -9,20 +9,20 @@ import TextView from './TextView';
 
 const width = Dimensions.get("screen").width
 
-const YearListView = ({ testId, onClick, yearList }: MonthListProps) => {
-    const flatRef = useRef<any>() 
+const YearListView = ({ testId, onClick, yearList, toggleYearList }: MonthListProps) => {
+    const flatRef = useRef<any>()
 
     return (
         <View style={[styles.floatStyle, styles.parent]}>
-            <View style={[styles.floatStyle, styles.blurStyle]} />
+            <TouchableOpacity style={[styles.floatStyle, styles.blurStyle]} onPress={() => toggleYearList && toggleYearList()} />
             <FlatList
                 onLayout={() => flatRef.current?.scrollToIndex({ index: 10, animated: true })}
                 ref={flatRef}
                 {...getTestProps(testId + '-year-list')}
                 data={yearList}
                 style={[styles.floatStyle, styles.listStyle,]}
-                numColumns={5} 
-                initialNumToRender={DateUtil.MAX_YEAR_OFFSET * 2} 
+                numColumns={5}
+                initialNumToRender={DateUtil.MAX_YEAR_OFFSET * 2}
                 snapToAlignment={"center"}
                 decelerationRate={"fast"}
                 contentContainerStyle={[baseStyles.viewGrid]}
@@ -49,6 +49,11 @@ const YearListView = ({ testId, onClick, yearList }: MonthListProps) => {
                 }}
                 keyExtractor={(item: MonthListItemProps, index: number) => `${index + item.value}`}
                 showsHorizontalScrollIndicator={false}
+                getItemLayout={(data, index) => ({
+                    length: 40,
+                    offset: 40 * index,
+                    index,
+                })}
             />
         </View>
     )
@@ -59,21 +64,22 @@ export default YearListView
 const styles = StyleSheet.create({
     floatStyle: {
         position: "absolute",
-        height: 275
+        height: 230,
+        bottom: 0
     },
     parent: {
         width: "100%",
-        height: "100%",
+        height: "112%",
         zIndex: 2,
-        alignItems: "center",
-        justifyContent: "center",
+        alignItems: "flex-end",
+        justifyContent: "flex-end",
     },
     blurStyle: {
         height: "100%",
         width: "100%",
         zIndex: 3,
-        opacity: 0.9,
-        backgroundColor: Res.color.white
+        opacity: 0.5,
+        backgroundColor: Res.color.textColor
     },
     listStyle: {
         zIndex: 4,

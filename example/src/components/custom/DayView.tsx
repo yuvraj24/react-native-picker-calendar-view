@@ -11,20 +11,17 @@ const DayView = () => {
                     console.log(day, month, year)
                 }}
                 testId={"calendar"}
-                renderLeftArrow={undefined}
-                renderRightArrow={undefined}
-                isShowGrid={false}
                 renderDay={(props) => { 
                     const { day, month, year, onDayPress } = props
 
                     return (
                         <TouchableOpacity
                             style={styles.box}
-                            onPress={() => onDayPress?.({ day: day.value, month, year })}>
+                            onPress={() => day.isValid && !day.isExtraDay && onDayPress?.({ day: day.value, month, year })}>
                             <Text style={[
                                  styles.viewDateAllowed,
                                 day.isToday && styles.viewDateSelected,
-                                !day.isValid && styles.viewDateDisabled
+                                (!day.isValid || day.isExtraDay) && styles.viewDateDisabled,
                             ]}>{props.day.value}</Text>
                         </TouchableOpacity>
                     )

@@ -1,18 +1,18 @@
 import React from 'react';
 import { Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
-import TextView from './TextView';
-import type { MonthListProps, MonthListItemProps } from '../interface/PropsInterface';
+import type { MonthListItemProps, MonthListProps } from '../interface/PropsInterface';
 import { baseStyles } from '../style/baseStyles';
 import Res from '../style/Res';
 import { getTestProps } from '../util/AppUtil';
 import { DateUtil } from '../util/DateUtil';
+import TextView from './TextView';
 
-const MonthListView = ({ testId, onClick }: MonthListProps) => {
+const MonthListView = ({ testId, onClick, toggleMonthList }: MonthListProps) => {
     const monthList = DateUtil.monthList()
 
     return (
         <View style={[styles.floatStyle, styles.parent]}>
-            <View style={[styles.floatStyle, styles.blurStyle]} />
+            <TouchableOpacity style={[styles.floatStyle, styles.blurStyle]} onPress={() => toggleMonthList && toggleMonthList()} />
             <FlatList
                 {...getTestProps(testId + '-month-list')}
                 data={monthList}
@@ -54,21 +54,21 @@ export default MonthListView
 const styles = StyleSheet.create({
     floatStyle: {
         position: "absolute",
-        flex: 1,
+        height: 235,
     },
     parent: {
         width: "100%",
-        height: "100%",
+        height: "112%",
         zIndex: 2,
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-end",
     },
     blurStyle: {
         height: "100%",
         width: "100%",
         zIndex: 3,
-        opacity: 0.9,
-        backgroundColor: Res.color.white
+        opacity: 0.5,
+        backgroundColor: Res.color.textColor
     },
     listStyle: {
         zIndex: 4,

@@ -10,12 +10,8 @@ const WeekNameView = () => {
                 onDayPress={({ day, month, year }) => {
                     console.log(day, month, year)
                 }}
-                testId={"calendar"}
-                renderLeftArrow={undefined}
-                renderRightArrow={undefined}
-                isShowGrid={false}
+                testId={"calendar"}  
                 renderWeekName={(props) => {
-                    console.log(props)
                     const { testId, value } = props
 
                     return (

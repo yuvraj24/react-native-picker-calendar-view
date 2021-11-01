@@ -8,5 +8,8 @@ export const baseStyle = StyleSheet.create({
     row: {
         flex: 1,
         flexDirection: "row"
+    },
+    alignCenter: {
+        alignItems: "center"
     }
 });
