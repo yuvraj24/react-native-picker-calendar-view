@@ -8,7 +8,7 @@ import {
 	TouchableOpacity,
 	View
 } from "react-native";
-import TextView from "../../src/components/TextView";
+import TextView from "./TextView";
 import LeftArrowIcon from "../assets/images/back.png";
 import RightArrowIcon from "../assets/images/next.png";
 import type {

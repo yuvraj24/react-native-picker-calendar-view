@@ -1,9 +1,9 @@
-import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import type { DayItemProps } from "src/interface/PropsInterface";
 import Res from "../style/Res";
 import { getTestProps } from "../util/AppUtil";
 import TextView from "./TextView";
+import React from "react";
 
 const DayItem = ({
 	day,

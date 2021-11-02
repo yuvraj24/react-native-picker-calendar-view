@@ -1,0 +1,7 @@
+node_modules
+lib
+babel.config.js
+example/babel.config.js
+example/metro.config.js
+react-native.config.js
+custom.d.ts

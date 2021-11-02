@@ -1,4 +1,3 @@
-import React from "react";
 import {
 	Dimensions,
 	FlatList,
@@ -6,6 +5,7 @@ import {
 	TouchableOpacity,
 	View
 } from "react-native";
+import React from "react";
 import type {
 	MonthListItemProps,
 	MonthListProps

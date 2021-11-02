@@ -11,7 +11,7 @@ npm install react-native-calendar-date-picker
 ## Usage
 
 ```js
-import { multiply } from "react-native-calendar-date-picker";
+import { multiply } from 'react-native-calendar-date-picker';
 
 // ...
 
