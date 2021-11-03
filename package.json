@@ -1,5 +1,5 @@
 {
-  "name": "react-native-calendar-date-picker",
+  "name": "react-native-picker-calendar-view",
   "version": "0.1.0",
   "description": "A date picker as well as calendar for React Native",
   "main": "lib/commonjs/index",
@@ -16,7 +16,7 @@
     "android",
     "ios",
     "cpp",
-    "react-native-calendar-date-picker.podspec",
+    "react-native-picker-calendar-view.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build"
@@ -36,23 +36,26 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/yuvraj24/react-native-calendar-date-picker",
+  "repository": "https://github.com/yuvraj24/react-native-picker-calendar-view",
   "author": "Yuvraj Pandey <yuvrajpandey24@gmail.com> (https://github.com/yuvraj24)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yuvraj24/react-native-calendar-date-picker/issues"
+    "url": "https://github.com/yuvraj24/react-native-picker-calendar-view/issues"
   },
-  "homepage": "https://github.com/yuvraj24/react-native-calendar-date-picker#readme",
+  "homepage": "https://github.com/yuvraj24/react-native-picker-calendar-view#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^11.0.0",
     "@react-native-community/eslint-config": "^2.0.0",
     "@release-it/conventional-changelog": "^2.0.0",
     "@types/jest": "^26.0.0",
-    "@types/react": "^16.9.19",
-    "@types/react-native": "0.62.13",
+    "@types/react": "^17.0.34",
+    "@types/react-native": "^0.66.2",
     "commitlint": "^11.0.0",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^7.0.0",
@@ -66,7 +69,7 @@
     "react-native": "0.63.4",
     "react-native-builder-bob": "^0.18.2",
     "release-it": "^14.2.2",
-    "typescript": "^4.1.3"
+    "typescript": "^4.4.4"
   },
   "peerDependencies": {
     "react": "*",
@@ -120,7 +123,6 @@
       ]
     }
   },
-
   "prettier": {
     "quoteProps": "consistent",
     "singleQuote": true,
@@ -136,9 +138,6 @@
       "module",
       "typescript"
     ]
-  },
-  "dependencies": {
-    "moment": "^2.29.1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [ 

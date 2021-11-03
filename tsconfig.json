@@ -29,7 +29,7 @@
     "target": "esnext",
     "allowJs": true,
     "typeRoots": [
-      "node_modules/@types"
+      "node"
     ]
   },
   "include": [
