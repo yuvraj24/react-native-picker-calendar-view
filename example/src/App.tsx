@@ -7,7 +7,7 @@ import {
 	TouchableOpacity,
 	View
 } from "react-native";
-import { CalendarDateView } from "react-native-calendar-date-picker";
+import { CalendarDateView } from "react-native-picker-calendar-view";
 import RadioButton from "./components/common/RadioButton";
 import DayView from "./components/custom/DayView";
 import HeaderView from "./components/custom/HeaderView";

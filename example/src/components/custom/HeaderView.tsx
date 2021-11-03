@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { CalendarDateView } from "react-native-calendar-date-picker";
+import { CalendarDateView } from "react-native-picker-calendar-view";
 import { baseStyle } from "../../style/baseStyle";
 
 const HeaderView = () => {

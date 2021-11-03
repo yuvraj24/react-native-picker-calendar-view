@@ -1,6 +1,6 @@
 {
-  "name": "react-native-calendar-date-picker-example",
-  "description": "Example app for react-native-calendar-date-picker",
+  "name": "react-native-picker-calendar-view-example",
+  "description": "Example app for react-native-picker-calendar-view",
   "version": "0.0.1",
   "private": true,
   "scripts": {
