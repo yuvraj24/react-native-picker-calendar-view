@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "react-native-calendar-date-picker": [
+      "react-native-picker-calendar-view": [
         "./example/index.tsx",
       ]
     },
@@ -26,7 +26,11 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "allowJs": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "include": [
     "src/custom.d.ts",

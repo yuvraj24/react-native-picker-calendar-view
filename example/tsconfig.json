@@ -2,15 +2,19 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-calendar-date-picker": ["../src/index.tsx"]
+      "react-native-calendar-date-picker": [
+        "../src/index.tsx"
+      ]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "esModuleInterop": true,
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "lib": ["esnext"],
+    "jsx": "preserve",
+    "lib": [
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
@@ -24,5 +28,8 @@
     "strict": true,
     "target": "esnext",
   },
-  "exclude": ["babel.config.js", "metro.config.js"]
+  "exclude": [
+    "babel.config.js",
+    "metro.config.js"
+  ]
 }
