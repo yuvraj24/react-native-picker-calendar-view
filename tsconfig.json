@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "jsx": "preserve",
+    "jsx": "react",
     "baseUrl": "./",
     "paths": {
       "react-native-picker-calendar-view": [

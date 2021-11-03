@@ -1,4 +1,5 @@
-import React, { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import type { TextProps } from "../interface/PropsInterface";
 import Res from "../style/Res";
 import { getTestProps } from "../util/AppUtil";
