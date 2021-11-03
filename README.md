@@ -3,22 +3,119 @@
 [![npm version](https://badge.fury.io/js/react-native-picker-calendar-view.svg?style=flat)](https://www.npmjs.com/package/react-native-picker-calendar-view) 
 ![Platform - Android and IOS](https://img.shields.io/badge/platform-Android%20%7C%20IOS-green.svg) 
 
-A date picker as well as calendar for React Native
+This is a highly customizable package can be used as a simple date picker as well as a calendar view for React Native.<br>
+It is compatible with both Android and iOS platforms.
+
+## Spread Your ❤️:
+[![GitHub followers](https://img.shields.io/github/followers/yuvraj24.svg?style=social&label=Follow)](https://github.com/yuvraj24)  [![Twitter Follow](https://img.shields.io/twitter/follow/yuvrajpy.svg?style=social)](https://twitter.com/yuvrajpy)
+<br>
 
 ## Installation
 
-```sh
-npm install react-native-picker-calendar-view
+If using yarn:
+
+```
+yarn add react-native-picker-calendar-view
 ```
 
+If using npm:
+
+```
+npm i react-native-picker-calendar-view
+```
+<br>
+
 ## Usage
+For example code, <a href="https://github.com/yuvraj24/react-native-picker-calendar-view/tree/master/example" target="_blank">Click here</a>
 
-```js
-import { multiply } from 'react-native-picker-calendar-view';
+### Basic Props
+```
+{
+	testId?: string;
+	style?: StyleProp<ImageStyle>;
 
-// ...
+	/** Display grid like view around each day, DEFAULT = true */
+	isShowGrid?: boolean;
 
-const result = await multiply(3, 7);
+	/** Hide prev month & next month extra days, DEFAULT = false */
+	hideExtraDays?: boolean;
+
+	/** Hide month & year navigation arrows, DEFAULT = false */
+	hideArrows?: boolean;
+
+	/** Callback which get invloked when a date is clicked, The function receives day, month & year as parameter  */
+	onDayPress?: (props: { day: number; month: number; year: number }) => void;
+
+	/** Replace default month and year title with custom one. The function receive a month ,year & other header props as parameter */
+	renderHeader?: (props: {
+		month: number;
+		monthName: string;
+		year: number;
+		toggleMList: () => void;
+		toggleYList: () => void;
+		prevMonth: () => void;
+		nextMonth: () => void;
+	}) => JSX.Element;
+
+	/** Render custom day component. the function receive all day props */
+	renderDay?: (props: {
+		testId?: string;
+		index: number;
+		day: DayProps;
+		month: number;
+		year: number;
+		onDayPress?: (props: {
+			day: number;
+			month: number;
+			year: number;
+		}) => void
+	}) => JSX.Element;
+
+	/** Render custom week component. the function receive a all day props */
+	renderWeekName?: (props: {
+		testId?: string;
+		value: {
+			d: string; // eg. { d: "1", dd: "01", ddh: "Su", ddd: "Sun", dddd: "Sunday" },
+			dd: string;
+			ddd: string;
+			dddd: string;
+			ddh: string;
+		};
+	}) => JSX.Element;
+
+	/** Replace left arrows with custom ones */
+	renderLeftArrow?: () => JSX.Element;
+
+	/** Replace right arrows with custom ones */
+	renderRightArrow?: () => JSX.Element;
+
+	/** Handler which gets executed when press arrow icon left. It receive a callback can go back month */
+	onPressArrowLeft?: (props: {
+		prevMonth?: () => void;
+		month?: number;
+		nextMonth?: () => void;
+	}) => void;
+
+	/** Handler which gets executed when press arrow icon right. It receive a callback can go next month */
+	onPressArrowRight?: (props: {
+		prevMonth?: () => void;
+		month?: number;
+		nextMonth?: () => void;
+	}) => void;
+
+	/** Disable left arrow */
+	disableArrowLeft?: boolean;
+
+	/** Disable right arrow */
+	disableArrowRight?: boolean;
+
+	/** Minimum date that can be selected, dates before minDate will be grayed out. Format = "DD-MM-YYYY" */
+	minDate?: string;
+
+	/** Maximum date that can be selected, dates after maxDate will be grayed out. Format = "DD-MM-YYYY" */
+	maxDate?: string;
+}
+
 ```
 
 ## Contributing
@@ -28,3 +125,13 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 ## License
 
 MIT
+
+## About Me
+
+### Yuvraj Pandey
+*I am a passionate Engineer which likes to push himself on various fronts of technologies.*  
+
+For more exciting updates follow me,
+
+<a href="https://twitter.com/yuvrajpy" target="_blank"><img src="https://github.com/yuvraj24/LiveSmashBar/blob/master/images/twitter.png" width="40" height="40"></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.linkedin.com/in/yuvrajpy" target="_blank"><img src="https://github.com/yuvraj24/LiveSmashBar/blob/master/images/linkedin.png" width="40" height="40"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/yuvraj24" target="_blank"><img src="https://github.com/yuvraj24/LiveSmashBar/blob/master/images/github.png" height="40"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://yuvrajpy.medium.com/" target="_blank"><img src="https://github.com/yuvraj24/LiveSmashBar/blob/master/images/medium.png" width="40" height="40"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://play.google.com/store/apps/developer?id=Yuvraj+Pandey"><img src="https://github.com/yuvraj24/LiveSmashBar/blob/master/images/playstore.png" width="40" height="40"></a>
+
