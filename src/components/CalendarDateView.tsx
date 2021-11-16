@@ -8,7 +8,6 @@ import {
 	TouchableOpacity,
 	View
 } from "react-native";
-import TextView from "./TextView";
 import LeftArrowIcon from "../assets/images/back.png";
 import RightArrowIcon from "../assets/images/next.png";
 import type {
@@ -22,6 +21,7 @@ import { getTestProps } from "../util/AppUtil";
 import { DateUtil } from "../util/DateUtil";
 import DateItem from "./DayItem";
 import MonthListView from "./MonthListView";
+import TextView from "./TextView";
 import YearListView from "./YearListView";
 
 const maxWidth = Dimensions.get("screen").width / 8;
@@ -122,7 +122,13 @@ const CalendarDateView = ({
 				>
 					{!hideArrows &&
 						((RenderLeftArrow && <RenderLeftArrow />) || (
-							<Image source={LeftArrowIcon} style={styles.arrowStyle} />
+							<Image
+								source={LeftArrowIcon}
+								style={[
+									styles.arrowStyle,
+									disableArrowLeft && { opacity: 0.4 }
+								]}
+							/>
 						))}
 				</TouchableOpacity>
 
@@ -156,7 +162,13 @@ const CalendarDateView = ({
 				>
 					{!hideArrows &&
 						((RenderRightArrow && <RenderRightArrow />) || (
-							<Image source={RightArrowIcon} style={styles.arrowStyle} />
+							<Image
+								source={RightArrowIcon}
+								style={[
+									styles.arrowStyle,
+									disableArrowRight && { opacity: 0.4 }
+								]}
+							/>
 						))}
 				</TouchableOpacity>
 			</View>

@@ -2,41 +2,76 @@ import type { ReactNode } from "react";
 import type { ImageStyle, StyleProp, TextStyle } from "react-native";
 
 export interface CalendarDayProps {
+	/** Unique testid for the component */
 	testId?: string;
+
+	/** Parent style for the entire component. */
 	style?: StyleProp<ImageStyle>;
 
 	/** Display grid like view around each day, DEFAULT = true */
 	isShowGrid?: boolean;
 
-	/** Hide prev month & next month extra days, DEFAULT = false */
+	/** Hide previous month & next month's extra days, DEFAULT = false */
 	hideExtraDays?: boolean;
+
+	/** Hide month & year navigation arrows, DEFAULT = false */
+	hideArrows?: boolean;
 
 	/** Callback which get invloked when a date is clicked, The function receives day, month & year as parameter  */
 	onDayPress?: (props: { day: number; month: number; year: number }) => void;
 
-	/** Replace default month and year title with custom one. The function receive a month & year as parameter */
-	renderHeader?: (props: CustomHeaderProps) => JSX.Element;
+	/** Replace default month and year title with custom one. The function receive a month ,year & other header props as parameter */
+	renderHeader?: (props: {
+		month: number;
+		monthName: string;
+		year: number;
+		toggleMList: () => void;
+		toggleYList: () => void;
+		prevMonth: () => void;
+		nextMonth: () => void;
+	}) => JSX.Element;
 
-	/** Render custom date component. the function receive all day props */
-	renderDay?: (props: DayItemProps) => JSX.Element;
+	/** Render custom day component. the function receive all day props */
+	renderDay?: (props: {
+		testId?: string;
+		index: number;
+		day: DayProps;
+		month: number;
+		year: number;
+		onDayPress?: (props: { day: number; month: number; year: number }) => void;
+	}) => JSX.Element;
 
-	/** Render custom week component. the function receive a all day props */
-	renderWeekName?: (props: WeekItemProps) => JSX.Element;
-
-	/** Hide month & year navigation arrows */
-	hideArrows?: boolean;
+	/** Render custom week component. the function receive a all week props */
+	renderWeekName?: (props: {
+		testId?: string;
+		value: {
+			d: string; // eg. { d: "1", dd: "01", ddh: "Su", ddd: "Sun", dddd: "Sunday" },
+			dd: string;
+			ddd: string;
+			dddd: string;
+			ddh: string;
+		};
+	}) => JSX.Element;
 
 	/** Replace left arrows with custom ones */
 	renderLeftArrow?: () => JSX.Element;
 
-	/** Replace left arrows with custom ones */
+	/** Replace right arrows with custom ones */
 	renderRightArrow?: () => JSX.Element;
 
 	/** Handler which gets executed when press arrow icon left. It receive a callback can go back month */
-	onPressArrowLeft?: (props: ArrowProps) => void;
+	onPressArrowLeft?: (props: {
+		prevMonth?: () => void;
+		month?: number;
+		nextMonth?: () => void;
+	}) => void;
 
 	/** Handler which gets executed when press arrow icon right. It receive a callback can go next month */
-	onPressArrowRight?: (props: ArrowProps) => void;
+	onPressArrowRight?: (props: {
+		prevMonth?: () => void;
+		month?: number;
+		nextMonth?: () => void;
+	}) => void;
 
 	/** Disable left arrow */
 	disableArrowLeft?: boolean;
@@ -109,7 +144,7 @@ export interface DayItemProps {
 export interface WeekItemProps {
 	testId?: string;
 	value: {
-		d: string;
+		d: string; // eg. { d: "1", dd: "01", ddh: "Su", ddd: "Sun", dddd: "Sunday" },
 		dd: string;
 		ddd: string;
 		dddd: string;
