@@ -24,11 +24,18 @@ If using npm:
 npm i react-native-picker-calendar-view
 ```
 
-## Screenshots
+## Screenshots : IOS
 
-|Example One                |  Example Two              | Example Three               |  Example Four       | Example Five   |
-|-------------------------|-------------------------|-------------------------|-------------------------|-------------------|
-|![](assets/photo1.png) | ![](assets/photo2.png) | ![](assets/photo4.png) | ![](assets/photo3.png) |![](assets/photo5.png) |
+|         Custom day view         |           Custom week view        |      Custom header view             |
+|---------------------------------|-----------------------------------|-------------------------------------|
+|![](screenshot/ios/dayview.png)  | ![](screenshot/ios/weekview.png)  | ![](screenshot/ios/headerview.png)  |
+<br>
+
+## Screenshots : ANDROID
+
+|         Custom day view         |           Custom week view        |      Custom header view             |
+|---------------------------------|-----------------------------------|-------------------------------------|
+|![](screenshot/android/dayview.png)  | ![](screenshot/android/weekview.png)  | ![](screenshot/android/headerview.png)  |
 <br>
 
 
