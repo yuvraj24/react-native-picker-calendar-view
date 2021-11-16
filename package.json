@@ -1,6 +1,6 @@
 {
   "name": "react-native-picker-calendar-view",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A date picker as well as calendar for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -50,9 +50,7 @@
     "moment": "^2.29.1"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^11.0.0",
     "@react-native-community/eslint-config": "^2.0.0",
-    "@release-it/conventional-changelog": "^2.0.0",
     "@types/jest": "^26.0.0",
     "@types/react": "^17.0.34",
     "@types/react-native": "^0.66.2",
@@ -140,7 +138,7 @@
     ]
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [ 
+    "*.{js,jsx,ts,tsx}": [
       "yarn lint --fix",
       "yarn prettier"
     ]

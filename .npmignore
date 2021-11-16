@@ -1,3 +1,6 @@
 example/
 lib/
 node_modules/
+screenshot/
+.circleci/
+.husky/

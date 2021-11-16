@@ -1,7 +1,7 @@
 {
   "name": "react-native-picker-calendar-view-example",
   "description": "Example app for react-native-picker-calendar-view",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
