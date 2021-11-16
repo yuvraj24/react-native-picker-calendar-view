@@ -80,11 +80,6 @@
       "<rootDir>/lib/"
     ]
   },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
   "release-it": {
     "git": {
       "commitMessage": "chore: release ${version}",
@@ -95,11 +90,6 @@
     },
     "github": {
       "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
     }
   },
   "eslintConfig": {
