@@ -23,7 +23,14 @@ If using npm:
 ```
 npm i react-native-picker-calendar-view
 ```
+
+## Screenshots
+
+|Example One                |  Example Two              | Example Three               |  Example Four       | Example Five   |
+|-------------------------|-------------------------|-------------------------|-------------------------|-------------------|
+|![](assets/photo1.png) | ![](assets/photo2.png) | ![](assets/photo4.png) | ![](assets/photo3.png) |![](assets/photo5.png) |
 <br>
+
 
 ## Usage
 For example code, <a href="https://github.com/yuvraj24/react-native-picker-calendar-view/tree/master/example" target="_blank">Click here</a>
