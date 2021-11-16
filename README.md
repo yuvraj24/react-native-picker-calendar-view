@@ -6,14 +6,14 @@
 This is a highly customizable package 🔥 that can be used as a simple date picker as well as a calendar view 📅 for React Native.<br>
 It is compatible with both Android and iOS platforms ✨ <br>
 
-### Features available :
+### Highlights :
 * *Supports custom day view in calendar.*
 * *Supports custom week view in calendar.*
 * *Supports complete custom header view in calendar.*
 * *Flexible component can be used within any view like bottom sheet etc.*
 * *Can be used as a simple date picker view for any usecases.*
 * *Supports restricting user to select betwwen minimum date & maximum date only for validation.*
-* *Allows to change arrow images for left and right navigation.
+* *Allows to change arrow images for left and right navigation.*
 
 <br>
 <img src="https://github.com/yuvraj24/react-native-picker-calendar-view/blob/master/screenshot/calendar.jpeg" />
