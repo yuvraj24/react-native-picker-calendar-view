@@ -1,10 +1,12 @@
-# react-native-picker-calendar-view
+# react-native-picker-calendar-view 📅
 
 [![npm version](https://badge.fury.io/js/react-native-picker-calendar-view.svg?style=flat)](https://www.npmjs.com/package/react-native-picker-calendar-view) 
 ![Platform - Android and IOS](https://img.shields.io/badge/platform-Android%20%7C%20IOS-green.svg) 
 
-This is a highly customizable package can be used as a simple date picker as well as a calendar view for React Native.<br>
+This is a highly customizable package can be used as a simple date picker as well as a calendar view for React Native<br>
 It is compatible with both Android and iOS platforms.
+
+<img src="https://github.com/yuvraj24/react-native-stories-view/blob/master/screenshot/calendar.jpeg" />
 
 ## Spread Your ❤️:
 [![GitHub followers](https://img.shields.io/github/followers/yuvraj24.svg?style=social&label=Follow)](https://github.com/yuvraj24)  [![Twitter Follow](https://img.shields.io/twitter/follow/yuvrajpy.svg?style=social)](https://twitter.com/yuvrajpy)
