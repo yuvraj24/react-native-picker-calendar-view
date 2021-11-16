@@ -1,6 +1,6 @@
 {
   "name": "react-native-picker-calendar-view",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A date picker as well as calendar for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -83,13 +83,15 @@
   "release-it": {
     "git": {
       "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
+      "tagName": "v${version}",
+      "changelog": "git log --pretty=format:\"* %s (%h)\" ${from}...${to}"
     },
     "npm": {
       "publish": true
     },
     "github": {
-      "release": true
+      "release": true,
+      "releaseName": "Release ${version}"
     }
   },
   "eslintConfig": {
