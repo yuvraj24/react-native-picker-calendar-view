@@ -31,13 +31,17 @@ For example code, <a href="https://github.com/yuvraj24/react-native-picker-calen
 ### Basic Props
 ```
 {
+
+	/** Unique testid for the component */
 	testId?: string;
+
+	/** Parent style for the entire component. */
 	style?: StyleProp<ImageStyle>;
 
 	/** Display grid like view around each day, DEFAULT = true */
 	isShowGrid?: boolean;
 
-	/** Hide prev month & next month extra days, DEFAULT = false */
+	/** Hide previous month & next month's extra days, DEFAULT = false */
 	hideExtraDays?: boolean;
 
 	/** Hide month & year navigation arrows, DEFAULT = false */
@@ -71,7 +75,7 @@ For example code, <a href="https://github.com/yuvraj24/react-native-picker-calen
 		}) => void
 	}) => JSX.Element;
 
-	/** Render custom week component. the function receive a all day props */
+	/** Render custom week component. the function receive a all week props */
 	renderWeekName?: (props: {
 		testId?: string;
 		value: {
@@ -117,6 +121,31 @@ For example code, <a href="https://github.com/yuvraj24/react-native-picker-calen
 }
 
 ```
+
+## Documentation :
+
+### CalendarDateView
+
+| **PropName**           | **PropType**     | **Parameters**                         | **Purpose**                                    |  **Default**   |
+| :--------------------- | :--------------- | :---------------------------------- | :----------------------------------------------   | :------------- |
+| testId                 |    `string`      |                                     |  Unique testid for the component                  |                |
+| style.                 |  `ImageStyle`    |                                     |  Parent style for the entire component.           |                |
+| isShowGrid             |    `boolean`     |                                     |  Display grid like view around each day           |     true       |
+| hideExtraDays          |    `boolean`     |                                     |  Hide previous month & next month's extra days    |     false      |
+| hideArrows             |    `boolean`     |                                     |  Hide month & year navigation arrows.             |     false      | 
+| disableArrowLeft       |    `boolean`     |                                     |  Disable left arrow.                              |     false      | 
+| disableArrowRight      |    `boolean`     |                                     |  Disable right arrow.                             |     false      | 
+| minDate                |    `string`      |                                     |  Minimum date that can be selected, dates before minDate will be grayed out.                                                                                                                                         |   DD-MM-YYYY       | 
+| maxDate                |    `string`      |                                     |  Maximum date that can be selected, dates after maxDate will be grayed out.                                                                                                                                           |   DD-MM-YYYY       |  
+| onDayPress             |    `function`    |  { day: number, month: number, year: number }    |   Callback which gets invloked when a date is clicked, The function receives day, month & year as parameter                                                                                               |                | 
+| renderHeader           |  `JSX.Element`   |  { month: number, monthName: string, year: number, toggleMList: () => void toggleYList: () => void, prevMonth: () => void, nextMonth: () => void }                                                    |  Replace default month and year title with custom one. The function receive a month ,year & other header props as parameter                                                                                         |                | 
+| renderDay              |  `JSX.Element`   |  { testId: string, index: number, day: DayProps, month: number, year: number, onDayPress:  { day: number, month: number, year: number }                                                           |  Render custom day component. the function receive all day props               |                | 
+| renderWeekName         |  `JSX.Element`   |  { testId: string, value: { d: string, dd: string, ddd: string, dddd: string, ddh: string }}                                                                                                         |  Render custom week component. the function receive a all week props                                                                                                                                                   |                | 
+| renderLeftArrow        |  `JSX.Element`   |                                     |  Replace left arrows with custom ones             |                | 
+| renderRightArrow       |  `JSX.Element`   |                                     |  Replace right arrows with custom ones            |                | 
+| onPressArrowLeft       |  `function`      |  { prevMonth: () => void, month: number, nextMonth: () => void }  | Handler which gets executed when press arrow icon left. It receive a callback can go back month                                                                                    |                | 
+| onPressArrowRight       |  `function`      |  { prevMonth: () => void month: number nextMonth: () => void } | Handler which gets executed when press arrow icon right. It receive a callback can go next month                                                                                   |                | 
+
 
 ## Contributing
 
